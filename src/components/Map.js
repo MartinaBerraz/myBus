@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import BusIcon from "@mui/icons-material/DirectionsBus";
-import L from "leaflet";
 import { Autocomplete, Paper, TextField } from "@mui/material";
 import { Markers } from "./Markers";
 import { AddressInput } from "./AddressInput";
-
-const apiUrl = "/colectivos/vehiclePositionsSimple";
-
-const clientId = "61faaf493b924b80a8bbec0aa14d41b5";
-const clientSecret = "c520741C5966480BB7F3cdB89e9895fe";
 
 const Map = () => {
   const [busLines, setBusLines] = useState([]);

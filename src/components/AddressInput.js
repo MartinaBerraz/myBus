@@ -5,6 +5,8 @@ import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import "leaflet-geosearch/dist/geosearch.css";
 import L from "leaflet";
 
+const iconsApiKey = process.env.REACT_APP_ICONS_API_KEY;
+
 export const AddressInput = () => {
   const map = useMap();
   const searchInputRef = useRef(null);
@@ -14,9 +16,8 @@ export const AddressInput = () => {
 
     // Marker personalizado al seleccionar una localización
     const customIcon = new L.Icon({
-      iconUrl:
-        "https://api.geoapify.com/v1/icon/?type=circle&color=red&icon=thumbtack&iconType=awesome&noShadow&scaleFactor=2&apiKey=69aac14f071e4da6b00b68f6a277f7d4", // Replace with the path to your custom marker icon
-      iconSize: [32, 32], // Adjust the size of your custom marker
+      iconUrl: `https://api.geoapify.com/v1/icon/?type=circle&color=red&icon=thumbtack&iconType=awesome&noShadow&scaleFactor=2&apiKey=${iconsApiKey}`, // Replace with the path to your custom marker icon
+      iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32],
     });

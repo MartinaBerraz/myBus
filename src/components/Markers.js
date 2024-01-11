@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import BusIcon from "@mui/icons-material/DirectionsBus";
 import L from "leaflet";
-import { Autocomplete, TextField } from "@mui/material";
-import { AddressInput } from "./AddressInput";
 
 const apiUrl = "/colectivos/vehiclePositionsSimple";
 const geocodingApiUrl = "https://nominatim.openstreetmap.org/search";
 
-const clientId = "61faaf493b924b80a8bbec0aa14d41b5";
-const clientSecret = "c520741C5966480BB7F3cdB89e9895fe";
+const clientId = process.env.REACT_APP_API_CLIENT_ID;
+const clientSecret = process.env.REACT_APP_API_CLIENT_SECRET;
+
+const iconsApiKey = process.env.REACT_APP_ICONS_API_KEY;
 
 const defaultIcon = new L.Icon({
-  iconUrl:
-    "https://api.geoapify.com/v1/icon/?type=material&color=%23ffd700&icon=bus&iconType=awesome&scaleFactor=2&apiKey=69aac14f071e4da6b00b68f6a277f7d4",
+  iconUrl: `https://api.geoapify.com/v1/icon/?type=material&color=%23ffd700&icon=bus&iconType=awesome&scaleFactor=2&apiKey=${iconsApiKey}`,
 
   iconSize: [25, 41],
   iconAnchor: [12, 41],
@@ -60,8 +58,6 @@ export const Markers = ({ onBusLinesChange, selectedBusLines }) => {
     return bounds.contains(markerLatLng);
   };
 
-  console.log("Selected Bus Lines:", selectedBusLines);
-
   const visibleMarkers = busData.filter(
     (bus) =>
       isMarkerVisible(bus) &&
@@ -90,8 +86,6 @@ export const Markers = ({ onBusLinesChange, selectedBusLines }) => {
             position={[bus.latitude, bus.longitude]}
             icon={defaultIcon}
           >
-            {console.log(bus)}
-
             <Popup>
               Línea: {bus.route_short_name}, Actualizado:{" "}
               {new Date().toLocaleTimeString()},
