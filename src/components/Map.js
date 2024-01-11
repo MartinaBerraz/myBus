@@ -30,6 +30,7 @@ const Map = () => {
           zIndex: 1000,
           borderRadius: "10px",
           backgroundColor: "#3c3c3c",
+          paddingInline: "1px",
         }}
       >
         <Autocomplete
@@ -39,10 +40,9 @@ const Map = () => {
           value={selectedBusLines}
           onChange={handleSelectedBusLinesChange}
           isMulti
-          style={{ color: "white" }}
+          style={{ color: "white", borderBlock: "none" }}
           sx={{
-            marginInline: "3vw",
-            marginBlock: "3vh",
+            marginBlock: "1.5vh",
             borderColor: "white",
             border: 0,
             ".MuiOutlinedInput-notchedOutline": {
